@@ -1,0 +1,65 @@
+import React from "react";
+import { GiHamburgerMenu, GiMagnifyingGlass } from "react-icons/gi";
+import logo from "@/assets/logo.png";
+
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Sidebar from "./Sidebar";
+const Navbar = () => {
+  return (
+    <div className="px-2 py-3 border-b z-50 bg-background bg-opacity-0 sticky top-0 left-0 right-0 flex justify-between items-center">
+      <div className="flex items-center gap-3">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full h-11 w-11"
+            >
+              <GiHamburgerMenu className="h-7 w-7" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent className="w-72 border-r-0 flex flex-col" side="left">
+            <SheetHeader>
+              <SheetTitle>
+                <div className="px-12 flex items-center gap-3">
+                  <img src={logo} className="h-7 w-7 rounded-full" />
+                  <span className="text-lg font-semibold text-orange-700">
+                    Trading
+                  </span>
+                </div>
+              </SheetTitle>
+            </SheetHeader>
+            <div className="overflow-y-scroll no-scrollbar">
+              <Sidebar />
+            </div>
+          </SheetContent>
+        </Sheet>
+        <p className="text-sm lg:text-base cursor pointer">Crypto Trading</p>
+        <div className="p-0 ml-9">
+          <Button variant="outine" className='flex items-center gap-3'>
+            <GiMagnifyingGlass/>
+            <span>Search</span>
+          </Button>
+        </div>
+      </div>
+      <div>
+        <Avatar>
+          <AvatarFallback>Z</AvatarFallback>
+        </Avatar>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
