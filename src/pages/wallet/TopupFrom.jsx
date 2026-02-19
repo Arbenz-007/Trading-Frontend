@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { DialogClose } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -12,9 +13,9 @@ const TopupFrom = () => {
     setPaymentMethod(value);
   };
 
-  const handleSubmit=()=>{
-    console.log(amount,paymentMethod);
-  }
+  const handleSubmit = () => {
+    console.log(amount, paymentMethod);
+  };
 
   const handleChange = (e) => {
     setAmount(e.target.value);
@@ -35,22 +36,25 @@ const TopupFrom = () => {
         <RadioGroup
           onValueChange={(value) => handlePaymentMethodChange(value)}
           className="flex"
-          defaultValue="RazorPay">
-            <div className="flex items-center space-x-2 border p-3 px-5 rounded-md">
-                <RadioGroupItem
-                icon={FaRegDotCircle}
-                className="h-9 w-9"
-                value="RazorPay"
-                id="r1"
+          defaultValue="RazorPay"
+        >
+          <div className="flex items-center space-x-2 border p-3 px-5 rounded-md">
+            <RadioGroupItem
+              icon={FaRegDotCircle}
+              className="h-9 w-9"
+              value="RazorPay"
+              id="r1"
+            />
+            <Label htmlFor="r1">
+              <div className="bg-white rounded-md px-5 py-2 w-32">
+                <img
+                  className="h-10"
+                  src="https://5.imimg.com/data5/SELLER/Default/2023/9/348603242/KE/OR/XP/29083784/razorpay-software-500x500.png"
                 />
-                <Label htmlFor="r1">
-                    <div className="bg-white rounded-md px-5 py-2 w-32">
-                        <img className="h-10" src="https://5.imimg.com/data5/SELLER/Default/2023/9/348603242/KE/OR/XP/29083784/razorpay-software-500x500.png"/>
-                    </div>
-                </Label>
-                
-            </div>
-            {/* <div className="flex items-center space-x-2 border p-3 px-5 rounded-md">
+              </div>
+            </Label>
+          </div>
+          {/* <div className="flex items-center space-x-2 border p-3 px-5 rounded-md">
                 <RadioGroupItem
                 icon={FaRegDotCircle}
                 className="h-9 w-9"
@@ -66,9 +70,11 @@ const TopupFrom = () => {
             </div> */}
         </RadioGroup>
       </div>
-      <Button onClick={handleSubmit} className='w-full py-7'>
-        Submit
-      </Button>
+      <DialogClose className='w-full'>
+        <Button onClick={handleSubmit} className="w-full py-7">
+          Submit
+        </Button>
+      </DialogClose>
     </div>
   );
 };
