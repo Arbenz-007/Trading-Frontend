@@ -10,7 +10,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { useNavigate } from "react-router-dom";
 const AssetTable = () => {
+
+  const navigate=useNavigate();
   return (
     <div>
       <Table>
@@ -26,7 +29,7 @@ const AssetTable = () => {
         </TableHeader>
         <TableBody>
             {[1,1,1,1,1,1,1,1,1].map((item,index)=><TableRow key={index}>
-            <TableCell className="font-medium">
+            <TableCell onClick={()=>navigate(`market/bitcoin`)} className="font-medium">
               <div className="flex items-center gap-2">
                 <Avatar className='-z-50'>
                   <AvatarImage src={bitcoin} />
