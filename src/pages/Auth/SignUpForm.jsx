@@ -1,8 +1,11 @@
 import React from "react";
 import { User, Mail, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 export default function SignUpForm({ isSignUp, setIsSignUp }) {
     const navigate = useNavigate();
+
+    const dispatch=useDispatch();
   return (
     <div
       className={`absolute top-0 right-0 w-1/2 h-full flex flex-col justify-center px-14 transition-all duration-700 ease-in-out z-10 
