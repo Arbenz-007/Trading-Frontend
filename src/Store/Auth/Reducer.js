@@ -8,6 +8,7 @@ import {
   GET_USER_SUCCESS,
   LOGIN_FAILURE,
   GET_USER_FAILURE,
+  LOGOUT,
 }  from "@/Store/Auth/ActionType";
 
 const initialState = {
@@ -35,6 +36,9 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_FAILURE:
     case GET_USER_FAILURE:
       return { ...state, loading: false, error: action.payload };
+
+    case LOGOUT:
+      return initialState
 
     default:
       return state;

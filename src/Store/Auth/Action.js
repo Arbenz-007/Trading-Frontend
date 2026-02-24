@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType";
+import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType";
 
 export const register=(userData)=>async(dispatch)=>{
 
@@ -10,7 +10,8 @@ export const register=(userData)=>async(dispatch)=>{
         const user=response.data;
         console.log(user);
 
-        dispatch({type:REGISTER_SUCCESS,payload:user.jwt})
+        dispatch({type:REGISTER_SUCCESS,payload:user.jwt});
+        localStorage.setItem("jwt",user.jwt);
     }
     catch(error){
 
@@ -29,7 +30,8 @@ export const login=(userData)=>async(dispatch)=>{
         const user=response.data;
         console.log(user);
 
-        dispatch({type:LOGIN_SUCCESS,payload:user.jwt})
+        dispatch({type:LOGIN_SUCCESS,payload:user.jwt});
+        localStorage.setItem("jwt",user.jwt);
     }
     catch(error){
 
@@ -52,6 +54,7 @@ export const getUser=(jwt)=>async(dispatch)=>{
         console.log(user);
 
         dispatch({type:GET_USER_SUCCESS,payload:user})
+        
     }
     catch(error){
 
@@ -60,3 +63,7 @@ export const getUser=(jwt)=>async(dispatch)=>{
     }
 }
 
+export const logout=()=>(dispatch)=>{
+    localStorage.clear();
+    dispatch({type:LOGOUT});
+};

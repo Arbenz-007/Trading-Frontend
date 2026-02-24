@@ -13,7 +13,11 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button";
 import AccountVerificationForm from "./AccountVerificationForm";
+import { useSelector } from "react-redux";
+import { store } from "@/Store/Store";
 const Profile = () => {
+
+  const {auth} = useSelector(store=>store);
 
   const handleTwoStepVerification=()=>{
     console.log("Two Step Verification");
@@ -30,11 +34,11 @@ const Profile = () => {
               <div className="space-y-7">
                 <div className="flex">
                   <p className="w-[9rem]">Email : </p>
-                  <p className="text-gray-500">rayan1234@gmail.com</p>
+                  <p className="text-gray-500">{auth.user?.email}</p>
                 </div>
                 <div className="flex">
                   <p className="w-[9rem]">Full Name : </p>
-                  <p className="text-gray-500">Md Rayyan</p>
+                  <p className="text-gray-500">{auth.user?.fullName.charAt(0).toUpperCase()+auth.user?.fullName.slice(1)}</p>
                 </div>
                 <div className="flex">
                   <p className="w-[9rem]">Date of Birth : </p>

@@ -15,7 +15,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Sidebar from "./Sidebar";
+import { useSelector } from "react-redux";
+import { store } from "@/Store/Store";
 const Navbar = () => {
+
+  const {auth} = useSelector(store=>store);
   return (
     <div className="px-2 py-3 border-b z-50 bg-background bg-opacity-0 sticky top-0 left-0 right-0 flex justify-between items-center">
       <div className="flex items-center gap-3">
@@ -55,7 +59,7 @@ const Navbar = () => {
       </div>
       <div>
         <Avatar>
-          <AvatarFallback>Z</AvatarFallback>
+          <AvatarFallback>{auth.user?.fullName[0].toUpperCase()}</AvatarFallback>
         </Avatar>
       </div>
     </div>
