@@ -28,16 +28,10 @@ export default function SignInForm({ isSignUp }) {
   // Handle login submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(formData));
-    console.log(formData);
+    dispatch(login({formData,navigate}));
   };
 
-  // Navigate after successful login
-  useEffect(() => {
-    if (jwt) {
-      navigate("/"); // change to dashboard if needed
-    }
-  }, [jwt, navigate]);
+
 
   return (
     <div

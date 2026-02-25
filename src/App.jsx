@@ -23,19 +23,14 @@ const App = () => {
   const dispatch=useDispatch();
 
 useEffect(() => {
-  if (auth.jwt && auth.jwt.split(".").length === 3) {
-    dispatch(getUser(auth.jwt));
-  }
+    dispatch(getUser(auth.jwt || localStorage.getItem("jwt")));
 }, [auth.jwt, dispatch]);
   console.log("auth ,,,,",auth);
 
 
   return (
   <>
-    {!auth.jwt ? (
-      <Auth />
-    ) : (
-      <div>
+    {auth.user? <div>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -50,8 +45,7 @@ useEffect(() => {
           <Route path="/search" element={<SearchCoin />} />
           <Route path="/*" element={<Notfound />} />
         </Routes>
-      </div>
-    )}
+      </div>:<Auth/>}
   </>
 );
 };

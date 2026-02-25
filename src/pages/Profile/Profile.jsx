@@ -88,7 +88,7 @@ const Profile = () => {
             <CardContent>
               <div>
                 <Dialog>
-                  <DialogTrigger>
+                  <DialogTrigger asChild>
                     <Button>Enable Two Step Verification</Button>
                   </DialogTrigger>
                   <DialogContent>
