@@ -24,7 +24,7 @@ const AssetTable = ({ coin, category }) => {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">Coin</TableHead>
-              <TableHead>Symbol</TableHead>
+              <TableHead className='w-[20px]'>Symbol</TableHead>
               <TableHead>Volume</TableHead>
               <TableHead>Market Cap</TableHead>
               <TableHead>24h</TableHead>
@@ -45,7 +45,7 @@ const AssetTable = ({ coin, category }) => {
                     <span>{item.name}</span>
                   </div>
                 </TableCell>
-                <TableCell>{item.symbol.toUpperCase()}</TableCell>
+                <TableCell className='w-[20px] text-center'>{item.symbol.toUpperCase()}</TableCell>
                 <TableCell>{item.total_volume}</TableCell>
                 <TableCell>{item.market_cap}</TableCell>
                 <TableCell>{item.price_change_percentage_24h}</TableCell>

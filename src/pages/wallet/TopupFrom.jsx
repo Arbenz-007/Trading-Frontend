@@ -3,11 +3,14 @@ import { DialogClose } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { paymentHandler } from "@/Store/Wallet/Action";
 import React, { useState } from "react";
 import { FaRegDotCircle } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 const TopupFrom = () => {
   const [amount, setAmount] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("RazorPay");
+  const [paymentMethod, setPaymentMethod] = useState("RAZORPAY");
+  const dispatch = useDispatch();
 
   const handlePaymentMethodChange = (value) => {
     setPaymentMethod(value);
@@ -15,6 +18,13 @@ const TopupFrom = () => {
 
   const handleSubmit = () => {
     console.log(amount, paymentMethod);
+    dispatch(
+      paymentHandler({
+        jwt: localStorage.getItem("jwt"),
+        paymentMethod,
+        amount,
+      }),
+    );
   };
 
   const handleChange = (e) => {
@@ -25,6 +35,7 @@ const TopupFrom = () => {
       <div>
         <h1 className="pb-1">Enter amount</h1>
         <Input
+          type="number"
           onChange={handleChange}
           value={amount}
           className="py-7 text-lg"
@@ -70,7 +81,7 @@ const TopupFrom = () => {
             </div> */}
         </RadioGroup>
       </div>
-      <DialogClose className='w-full'>
+      <DialogClose asChild className="w-full">
         <Button onClick={handleSubmit} className="w-full py-7">
           Submit
         </Button>
