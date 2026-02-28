@@ -1,16 +1,63 @@
-# React + Vite
+# Cryptocurrency Trading Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Description
+This project is a cryptocurrency trading frontend application designed to provide users with a seamless experience in trading digital currencies. It includes real-time tracking of market prices, user authentication, and trade execution capabilities.
 
-Currently, two official plugins are available:
+## Tech Stack
+- **Frontend:** React.js, Redux, Tailwind CSS  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB  
+- **Other Tools:** WebSockets for real-time data, Axios for API requests  
+- **Deployment:** Docker, AWS  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- User authentication (sign up, log in, log out)  
+- Real-time market price tracking  
+- Trading capabilities (buy/sell orders)  
+- User portfolio management  
+- Responsive design for mobile and desktop views  
 
-## React Compiler
+## Installation Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Arbenz-007/Trading-Frontend.git
+   cd Trading-Frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Environment Setup
+You will need to set up the following environment variables in a `.env` file:
+```plaintext
+REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_WS_URL=ws://localhost:5000/ws
+```
 
-## Expanding the ESLint configuration
+## Folder Structure
+```
+Trading-Frontend/
+├── public/
+│   └── index.html
+├── src/
+│   ├── components/
+│   ├── hooks/
+│   ├── pages/
+│   ├── redux/
+│   ├── App.js
+│   ├── index.js
+│   └── styles/
+├── .gitignore
+├── package.json
+└── README.md
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Future Improvements
+- Implementation of advanced trading features such as margin trading and options trading.
+- Development of a mobile application to enhance user accessibility.
+- Integration of machine learning algorithms for predictive analytics of market trends.
