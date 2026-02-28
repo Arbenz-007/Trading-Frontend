@@ -19,15 +19,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchCoinDetails } from "@/Store/Coin/Action";
 import { store } from "@/Store/Store";
+import { addItemToWatchlist, getUserWatchlist } from "@/Store/Watchlist/Action";
+import { existInWatchlist } from "@/utils/existInWatchlist";
 const StockDetails = () => {
   const dispatch=useDispatch();
-  const {coin}=useSelector(store=>store)
+  const {coin,watchlist}=useSelector(store=>store)
   const {id}=useParams();
 
   useEffect(()=>{
     dispatch(fetchCoinDetails({coinId:id,jwt:localStorage.getItem("jwt")}));
+    dispatch(getUserWatchlist(localStorage.getItem("jwt")));
   },[id]);
 
+  const handleAddToWAtchlist=()=>{
+    dispatch(addItemToWatchlist({coinId:coin.coinDetails.id,jwt:localStorage.getItem("jwt")}));
+  }
   return (
     <div className="p-5 mt-5">
       <div className="flex justify-between">
@@ -47,17 +53,18 @@ const StockDetails = () => {
               <p className="text-xl font-bold">{coin?.coinDetails?.market_data.current_price.usd}</p>
               <p className="text-red-600">
                 <span>{coin?.coinDetails?.market_data.market_cap_change_24h}</span>
-                <span>(-{coin?.coinDetails?.market_data.market_cap_change_percentage_24h})%</span>
+                <span>({coin?.coinDetails?.market_data.market_cap_change_percentage_24h})%</span>
               </p>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-5">
-          <Button>
-            {true ? (
-              <CiBookmark className="h-6 w-6" />
+          <Button onClick={handleAddToWAtchlist}>
+            
+            { existInWatchlist(watchlist.items,coin.coinDetails)? (
+             <RxBookmarkFilled className="h-6 w-6" />
             ) : (
-              <RxBookmarkFilled className="h-6 w-6" />
+               <CiBookmark className="h-6 w-6" />
             )}
           </Button>
           <Dialog>

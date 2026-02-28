@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import bitcoin from "@/assets/bitcoin.png";
 import {
@@ -13,9 +13,18 @@ import {
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { RxBookmarkFilled } from "react-icons/rx";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToWatchlist, getUserWatchlist } from "@/Store/Watchlist/Action";
+import { store } from "@/Store/Store";
+import { existInWatchlist } from "@/utils/existInWatchlist";
 const Watchlist = () => {
-  const handleRemoveFromWatchlist=(value)=>{
-    console.log(value);
+  const dispatch=useDispatch();
+  const {watchlist}=useSelector(store=>store);
+  useEffect(()=>{
+    dispatch(getUserWatchlist(localStorage.getItem("jwt")));
+  },[]);
+  const handleRemoveFromWatchlist=(id)=>{
+    dispatch(addItemToWatchlist({coinId:id,jwt:localStorage.getItem("jwt")}));
   };
   return (
     <div className="p-5 lg:px-20 py-10">
@@ -33,21 +42,21 @@ const Watchlist = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((item, index) => (
+          {watchlist?.items.map((item, index) => (
             <TableRow key={index}>
               <TableCell className="font-medium">
                 <div className="flex items-center gap-2">
                   <Avatar className="-z-50">
-                    <AvatarImage src={bitcoin} />
+                    <AvatarImage src={item.image} />
                   </Avatar>
-                  <span>Bitcoin</span>
+                  <span>{item.name}</span>
                 </div>
               </TableCell>
-              <TableCell>BTC</TableCell>
-              <TableCell>100004.2</TableCell>
-              <TableCell>1347029332173</TableCell>
-              <TableCell>-0.72534</TableCell>
-              <TableCell className="text-right">$67409</TableCell>
+              <TableCell>{item.symbol.toUpperCase()}</TableCell>
+              <TableCell>{item.total_volume}</TableCell>
+              <TableCell>{item.market_cap}</TableCell>
+              <TableCell>{item.price_change_percentage_24h}</TableCell>
+              <TableCell className="text-right">${item.current_price}</TableCell>
               <TableCell className="text-right">
                 <Button variant='ghost' onClick={()=>handleRemoveFromWatchlist(item.id)} size='icon' className='h-10 w-10'>
                   <RxBookmarkFilled className="w-6 h-6"/>

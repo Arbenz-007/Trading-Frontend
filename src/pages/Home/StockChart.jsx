@@ -37,7 +37,7 @@ const StockChart = ({ coinId }) => {
       strokeWidth: 1,
       style: "hollow",
     },
-    tooktip: {
+    tooltip: {
       theme: "dark",
     },
     fill: {
